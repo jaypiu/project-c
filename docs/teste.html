@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendário do Amor 💌</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('aurorinha.jpg') no-repeat center center / cover;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-6">
+
+  <h1 class="text-3xl font-bold text-white drop-shadow-lg mb-6 text-center">Nosso Calendário do Amor 💖</h1>
+
+  <div class="grid grid-cols-3 gap-4 mb-8">
+    <!-- Dia 1 -->
+    <button onclick="showPresent(1)" class="bg-white rounded-xl shadow-md p-6 text-pink-700 font-semibold hover:bg-pink-100 transition duration-300">
+      Dia 1
+    </button>
+    <!-- Dia 2 -->
+    <button onclick="showPresent(2)" class="bg-white rounded-xl shadow-md p-6 text-pink-700 font-semibold hover:bg-pink-100 transition duration-300">
+      Dia 2
+    </button>
+    <!-- Dia 3 (com música e poema) -->
+    <button onclick="showPresent(3)" class="bg-white rounded-xl shadow-md p-6 text-pink-700 font-semibold hover:bg-pink-100 transition duration-300">
+      Dia 3
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50 overflow-auto">
+    <div class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full text-center relative">
+      <div id="modal-content">
+        <!-- Conteúdo será inserido via JS -->
+      </div>
+      <button onclick="closeModal()" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition">Fechar com carinho</button>
+    </div>
+  </div>
+
+  <script>
+    const imagensDia2 = [
+      "c1.jpg", "c2.png", "c3.jpg", "c4.jfif", "c5.jpg", "c6.jpg", "c7.jpg"
+    ];
+    let imagemAtual = 0;
+
+    function showPresent(day) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+
+      if (day === 1) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 1 🎁</h2>
+          <p class="text-gray-700 mb-4">Você é a luz mais bonita que apareceu na minha vida. E esse é só o começo do que eu quero mostrar pra você aqui. 💌</p>
+          <img src="https://placekitten.com/300/200" alt="fofinho" class="rounded-lg mx-auto mb-4 shadow-md" />
+        `;
+      }
+
+      if (day === 2) {
+        imagemAtual = 0;
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 2 ✨</h2>
+          <p class="text-gray-700 mb-2 italic">"— Ontem sonhei com você."</p>
+          <p class="text-gray-700 mb-2 italic">"— Como foi o sonho?"</p>
+          <p class="text-gray-700 mb-4 font-semibold">Foi mais ou menos assim...</p>
+          <img id="imagem-sonho" src="${imagensDia2[0]}" alt="Sonho" class="rounded-lg mx-auto mb-4 shadow-md w-full h-auto" />
+          <div class="flex justify-center gap-4">
+            <button id="btn-anterior" onclick="imagemAnterior()" class="bg-pink-300 text-white px-4 py-2 rounded-full hover:bg-pink-400 transition hidden">Anterior</button>
+            <button id="btn-proximo" onclick="proximaImagem()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Próxima</button>
+          </div>
+        `;
+      }
+
+      if (day === 3) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 3 🎵</h2>
+          <div class="mb-4">
+            <iframe width="853" height="480" src="https://www.youtube.com/embed/WRGcgkF1mK8" title="Por Você (Acústica)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="text-gray-700 text-left max-h-60 overflow-y-auto px-2">
+            <p class="mb-2"><strong>Por você...</strong></p>
+            <p>Eu só usaria verde o ano inteiro<br/>
+            Te diria mil vezes “eu te amo” primeiro<br/>
+            Eu comeria camarão todo dia<br/>
+            Mesmo se tivesse alergia</p><br/>
+            <p>Por você<br/>
+            Escreveria cem cartas à mão<br/>
+            Só pra te lembrar da minha paixão<br/>
+            Reveria "Amor à toda prova" sem parar<br/>
+            Só pra te ver feliz e se emocionar</p><br/>
+            <p>Por você<br/>
+            Eu seria seu motorista particular<br/>
+            Eu teria cólica no seu lugar<br/>
+            Eu teria uma casa com risos e latidos<br/>
+            Criaria um exército de filhos queridos<br/>
+            E Desejaria todo o dia a mesma mulher</p>
+          </div>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function proximaImagem() {
+      if (imagemAtual < imagensDia2.length - 1) {
+        imagemAtual++;
+        atualizarImagem();
+      }
+    }
+
+    function imagemAnterior() {
+      if (imagemAtual > 0) {
+        imagemAtual--;
+        atualizarImagem();
+      }
+    }
+
+    function atualizarImagem() {
+      const img = document.getElementById("imagem-sonho");
+      const btnProximo = document.getElementById("btn-proximo");
+      const btnAnterior = document.getElementById("btn-anterior");
+
+      img.src = imagensDia2[imagemAtual];
+      btnAnterior.style.display = imagemAtual === 0 ? "none" : "inline-block";
+      btnProximo.style.display = imagemAtual === imagensDia2.length - 1 ? "none" : "inline-block";
+    }
+  </script>
+</body>
+</html>
