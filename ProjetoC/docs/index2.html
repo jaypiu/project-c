@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendário do Amor 💌</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-6 bg-cover bg-center" 
+      style="background-image: url('imagens/aurorinha.jpg');">
+
+  <h1 class="text-3xl font-bold text-white drop-shadow-lg mb-6 text-center">Nosso Calendário do Amor 💖</h1>
+
+  <!-- Contêiner dos botões de dias -->
+  <div class="grid grid-cols-3 gap-4"></div>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-xl shadow-lg max-w-md w-full text-center relative overflow-y-auto max-h-[90vh]">
+      <div id="modal-content">
+        <!-- Conteúdo será inserido via JS -->
+      </div>
+      <button onclick="closeModal()" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition">Fechar com carinho</button>
+    </div>
+  </div>
+
+  <script>
+    const imagensDia2 = [
+      "imagens/c1.jpg", "imagens/c2.png", "imagens/c3.jpg", "imagens/c4.jfif", "imagens/c5.jpg", "imagens/c6.jpg", "imagens/c7.jpg"
+    ];
+    let imagemAtual = 0;
+
+    function showPresent(day) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+
+      if (day === 1) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 1 🎁</h2>
+          <p class="text-gray-700 mb-4">Você é a luz mais bonita que apareceu na minha vida. E esse é só o começo do que eu quero mostrar pra você aqui. 💌</p>
+          <img src="https://placekitten.com/300/200" alt="fofinho" class="rounded-lg mx-auto mb-4 shadow-md" />
+        `;
+      }
+
+      if (day === 2) {
+        imagemAtual = 0;
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 2 ✨</h2>
+          <p class="text-gray-700 mb-2 italic">"— Ontem sonhei com você."</p>
+          <p class="text-gray-700 mb-2 italic">"— Como foi o sonho?"</p>
+          <p class="text-gray-700 mb-4 font-semibold">Foi mais ou menos assim...</p>
+          <img id="imagem-sonho" src="${imagensDia2[0]}" alt="Sonho" class="rounded-lg mx-auto mb-4 shadow-md w-full h-auto" />
+          <div class="flex justify-center gap-4">
+            <button id="btn-anterior" onclick="imagemAnterior()" class="bg-pink-300 text-white px-4 py-2 rounded-full hover:bg-pink-400 transition hidden">Anterior</button>
+            <button id="btn-proximo" onclick="proximaImagem()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Próxima</button>
+          </div>
+        `;
+      }
+
+      if (day === 3) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 3 🎶</h2>
+          <p class="text-gray-700 mb-4">Essa música me faz pensar em tudo o que eu seria capaz de fazer... por você 💌</p>
+
+          <div class="aspect-video mb-4">
+            <iframe class="w-full h-full rounded-lg shadow-md" src="https://www.youtube.com/embed/6WkLkU_Bz9A" 
+              title="Por Você - Barão Vermelho" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+          </div>
+
+          <div class="text-left text-gray-800 italic leading-relaxed space-y-1">
+            <p>Por você</p>
+            <p>Eu só usaria verde o ano inteiro</p>
+            <p>Te diria mil vezes “eu te amo” primeiro</p>
+            <p>Eu comeria camarão todo dia</p>
+            <p>Mesmo se tivesse alergia</p>
+            <br/>
+            <p>Por você</p>
+            <p>Escreveria cem cartas à mão</p>
+            <p>Só pra te lembrar da minha paixão</p>
+            <p>Reveria "Amor à toda prova" sem parar</p>
+            <p>Só pra te ver feliz e se emocionar</p>
+            <br/>
+            <p>Por você</p>
+            <p>Eu seria seu motorista particular</p>
+            <p>Eu faria o tempo parar no seu olhar</p>
+            <p>Teria uma casa com risos e latidos</p>
+            <p>Criaria um exército de filhos queridos</p>
+            <p>E desejaria todo dia a mesma mulher</p>
+          </div>
+        `;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function proximaImagem() {
+      if (imagemAtual < imagensDia2.length - 1) {
+        imagemAtual++;
+        atualizarImagem();
+      }
+    }
+
+    function imagemAnterior() {
+      if (imagemAtual > 0) {
+        imagemAtual--;
+        atualizarImagem();
+      }
+    }
+
+    function atualizarImagem() {
+      const img = document.getElementById("imagem-sonho");
+      const btnProximo = document.getElementById("btn-proximo");
+      const btnAnterior = document.getElementById("btn-anterior");
+
+      img.src = imagensDia2[imagemAtual];
+
+      btnAnterior.style.display = imagemAtual === 0 ? "none" : "inline-block";
+      btnProximo.style.display = imagemAtual === imagensDia2.length - 1 ? "none" : "inline-block";
+    }
+
+    // LIBERAÇÃO AUTOMÁTICA DE DIAS
+    const dataInicial = new Date(2025, 6, 7); // 10 de Julho de 2025
+    const hoje = new Date();
+    const totalDias = 10;
+    const botoesContainer = document.querySelector(".grid");
+
+    for (let i = 0; i < totalDias; i++) {
+      const dataDia = new Date(dataInicial);
+      dataDia.setDate(dataInicial.getDate() + i);
+      const liberado = hoje >= dataDia;
+      const numeroDia = i + 1;
+
+      const botao = document.createElement("button");
+      botao.className = "rounded-xl p-6 font-semibold transition duration-300";
+
+      if (liberado) {
+        botao.innerText = `Dia ${numeroDia}`;
+        botao.classList.add("bg-white", "text-pink-700", "hover:bg-pink-100", "shadow-md");
+        botao.onclick = () => showPresent(numeroDia);
+      } else {
+        botao.innerText = `Dia ${numeroDia}`;
+        botao.classList.add("bg-gray-200", "text-gray-500", "cursor-not-allowed");
+        botao.disabled = true;
+      }
+
+      botoesContainer.appendChild(botao);
+    }
+  </script>
+</body>
+</html>
