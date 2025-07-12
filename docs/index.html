@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calendário do Amor 💌</title>  
+  <title>Calendário do Amor 💌</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start p-6 bg-cover bg-center" 
@@ -54,10 +54,21 @@
         content.innerHTML = `
           <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 3 🔒</h2>
           <p class="text-gray-700 mb-4">Esse presente está escondido por trás de uma palavrinha mágica ✨</p>
-          <p class="text-sm text-gray-500 italic mb-4">Dica: Palavras Cruzadas 37 ou 61</p>
+          <p class="text-sm text-gray-500 italic mb-4">Dica: Palavras Cruzadas 61</p>
           <input id="senha-dia3" type="password" placeholder="Digite a senha..." 
                  class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
           <button onclick="verificarSenhaDia3()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Desbloquear</button>
+        `;
+      }
+
+      if (day === 4) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 4 🔒</h2>
+          <p class="text-gray-700 mb-4">O som desse dia tá trancado por uma memória 💭</p>
+          <p class="text-sm text-gray-500 italic mb-4">Dica: Onde eu estava quando te mandei a primeira mensagem no WhatsApp?</p>
+          <input id="senha-dia4" type="password" placeholder="Digite a senha..." 
+                 class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia4()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Desbloquear</button>
         `;
       }
 
@@ -91,36 +102,31 @@
       if (senha === "amor" || senha == "amar") {
         content.innerHTML = `
           <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 3 🎶</h2>
-          <p class="text-gray-700 mb-4">Essa música me faz pensar em tudo o que eu seria capaz de fazer... Por você 💌</p>
-
+          <p class="text-gray-700 mb-4">Essa música me faz pensar em tudo o que eu seria capaz de fazer... por você 💌</p>
           <video controls class="w-full rounded-lg shadow-md mb-4">
             <source src="videos/por-voce.mp4" type="video/mp4">
             Seu navegador não suporta a reprodução de vídeo.
           </video>
-
-          <div class="text-left text-gray-800 italic leading-relaxed space-y-1">
-            <p>Por você</p>
-            <p>Escreveria cem cartas à mão</p>
-            <p>Só pra te lembrar da minha paixão</p>
-            <p>Reveria "Amor à toda prova" sem parar</p>
-            <p>Só pra te ver feliz e se emocionar</p>
-            <br/>
-            <p>Por você</p>
-            <p>Eu só usaria verde o ano inteiro</p>
-            <p>Te diria mil vezes “eu te amo” primeiro</p>
-            <p>Eu comeria camarão todo dia</p>
-            <p>Mesmo se tivesse alergia</p>
-            <br/>
-            <p>Por você</p>
-            <p>Eu seria seu motorista particular</p>
-            <p>Eu faria o tempo parar no seu olhar</p>
-            <p>Teria uma casa com risos e latidos</p>
-            <p>Criaria um exército de filhos queridos</p>
-            <p>E desejaria todo dia a mesma mulher</p>
-          </div>
         `;
       } else {
-        alert("Erroooou! Tente novamente mia pincesa💖");
+        alert("Hmm... tenta outra vez com carinho! 🧩💘");
+      }
+    }
+
+    function verificarSenhaDia4() {
+      const senha = document.getElementById("senha-dia4").value.trim().toLowerCase();
+      const content = document.getElementById("modal-content");
+      if (senha === "petz") {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 4 🎹</h2>
+          <p class="text-gray-700 mb-4">"Comptine d’un autre été", com muito carinho, só pra você 💕🎼</p>
+          <video controls class="w-full rounded-lg shadow-md mb-4">
+            <source src="videos/Piano.mp4" type="video/mp4">
+            Seu navegador não suporta a reprodução de vídeo.
+          </video>
+        `;
+      } else {
+        alert("ERROU!! Quero o nome do lugar 💘");
       }
     }
 
@@ -153,7 +159,7 @@
       btnProximo.style.display = imagemAtual === imagensDia2.length - 1 ? "none" : "inline-block";
     }
 
-    const dataInicial = new Date(2025, 6, 10); // 10/07/2025
+    const dataInicial = new Date(2025, 6, 10);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
     const totalDias = 10;
