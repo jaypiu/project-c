@@ -77,7 +77,7 @@
       }
       if (day === 5) {
           content.innerHTML = `
-            <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 14 🔒</h2>
+            <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 5 🔒</h2>
             <p class="text-gray-700 mb-4">Enunciado: Quem ama mais? J ou C?</p>
             <input id="senha-dia14" type="text" placeholder="Digite a resposta..." 
                   class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
@@ -87,7 +87,7 @@
 
     if (day === 6) {
       content.innerHTML = `
-        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 15 🔒</h2>
+        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 6 🔒</h2>
         <p class="text-gray-700 mb-4">Dica: quantos reais mandei no pix pra sua mãe?</p>
         <input id="senha-dia15" type="text" placeholder="Digite a senha..." 
               class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
@@ -97,7 +97,7 @@
 
     if (day === 7) {
       content.innerHTML = `
-        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 16 🔒</h2>
+        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 7 🔒</h2>
         <p class="text-gray-700 mb-4">Dica: qual é a menina mais linda do universo?</p>
         <input id="senha-dia7" type="text" placeholder="Digite a senha..." 
               class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
@@ -107,13 +107,40 @@
 
     if (day === 8) {
       content.innerHTML = `
-        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 16 🔒</h2>
+        <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 8 🔒</h2>
         <p class="text-gray-700 mb-4">Dica: qual poderia ser o nome da nossa filha?</p>
         <input id="senha-dia8" type="text" placeholder="Digite a senha..." 
               class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
         <button onclick="verificarSenhaDia8()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Abrir presente</button>
       `;
     }
+
+    if (day === 9) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 9 🔒</h2>
+          <p class="text-gray-700 mb-4">Dica: Onde Vanda tirou foto?</p>
+          <input id="senha-dia9" type="text" placeholder="Digite a senha..." class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia9()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Abrir presente</button>
+        `;
+      }
+
+      if (day === 10) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 10 🔒</h2>
+          <p class="text-gray-700 mb-4">Dica: Qual cidade houve foto do quinto ano?</p>
+          <input id="senha-dia10" type="text" placeholder="Digite a senha..." class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia10()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Abrir presente</button>
+        `;
+      }
+
+      if (day === 11) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 11 🔒</h2>
+          <p class="text-gray-700 mb-4">Dica: Qual contato tirou foto na arquibancada?</p>
+          <input id="senha-dia11" type="text" placeholder="Digite a senha..." class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia11()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Abrir presente</button>
+        `;
+      }
 
 
       modal.classList.remove('hidden');
@@ -266,6 +293,164 @@ function verificarSenhaDia8() {
   }
 }
 
+function verificarSenhaDia9() {
+      const senha = document.getElementById("senha-dia9").value.trim().toLowerCase();
+      const content = document.getElementById("modal-content");
+      if (senha === "refeitório" || senha === "refeitorio") {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 9 🎬</h2>
+          <p class="text-gray-700 mb-4">Já se perguntou onde estaria seu futuro amor naquele exato momento? 💞</p>
+          <video controls class="w-full rounded-lg shadow-md mb-4">
+            <source src="videos/crescer.mp4" type="video/mp4">
+            Seu navegador não suporta a reprodução de vídeo.
+          </video>
+        `;
+      } else {
+        alert("Hmm... resposta errada! 😜");
+      }
+    }
+
+    function verificarSenhaDia10() {
+  const senha = document.getElementById("senha-dia10").value.trim().toLowerCase();
+  const content = document.getElementById("modal-content");
+
+  if (senha === "paracambi") {
+    const texto = `Africano = Ek is lief vir jou
+Albanes = Te dua
+Alemao = Ich lieb Dich
+Arabe = Ana b'hibbik - Masc > Fem / Ana b'hibbak - Fem > Masc
+Armenio = Yes kez sirumen
+Bambara = M'bi fe
+Bangla Aamee = tuma ke bhalo aashi
+Belarusian = Ya tabe kahayu
+Bisaya = Nahigugma ako kanimo
+Bulgaro = Obicham te
+Camila = A razão do meu viver
+Cambojano = Soro lahn nhee ah
+Chines Cantonense = Ngo oiy ney a
+Catalao = T'estimo
+Cheyenne = Ne mohotatse
+Chichewa = Ndimakukonda
+Coreano = Sarang Heyo
+Crioulo Haitiano = Mwen renmen ou
+Croata = Volim te
+Dinamarques = Jeg Elsker Dig
+Holandes = Ik hou van jo
+Ingles = I love you
+Eslovaco = Lu 'bim ta
+Esloveno = Ljubim te
+Espanhol = Te quiero - Te amo
+Esperanto = Mi amas vin
+Estoniano = Ma armastan sin
+Etiope = Afgreki
+Faroese = Eg elski teg
+Farsi = Doset daram
+Filipino = Mahal kita
+Finlandes = Mina rakastan sinua
+Frances = Je t'aime - Je t'adore
+Gaelico = Ta gra agam ort
+Gaelico Escoces = Tha gra - dh agam ort
+Georgiano = Mikvarhar
+Grego = S'agapo
+Gujarati = Hoo thunay prem karoo choo
+Guarani = Rohayhu
+Havaiano = Aloha wau ia oi
+Hebreu = Ani ohev otah - Masc > Fem / Ani ohev et otha - Fem > Masc
+Hiligaynon = Guina higugma ko ikaw
+Hmong = Kuv hlub koj
+Hopi = Nu' umi unangwa'ta
+Hungaro = Szeretlek
+Islandes = Eg elska tig
+Ilonggo = Palangga ko ikaw
+Indiano = Hum Tumhe Pyar Karte hae
+Indonesio = Saya cinta padamu
+Inuit = Negligevapse
+Irlandes = Taim i' ngra leat
+Italiano = Ti amo
+Japones = Aishiteru
+Javanes = Kulo tresno
+Kannada = Naanu ninna preetisuttene
+Kapampangan = Kaluguran daka
+Kiswahili = Nakupenda
+Konkani = Tu magel moga cho
+Latino = Te amo
+Latvian = Es tevi miilu
+Libanes = Bahibak
+Lituano = Tave myliu
+Malaio = Saya cintakan mu - Aku cinta pakamu
+Malayalam = Njan Ninne Premikunnu
+Mandarim (chines) = Wo ai ni
+Marathi = Me tula prem karto
+Marroquino = Ana moajaba bik
+Mohawk = Kanbhik
+Nahuati = Ni mits neki
+Navajo = Ayor anosh'ni
+Noruegues = Jeg Elsker Deg
+Pandacan = Syota na kita!!
+Pangasinan = Inaru Taka
+Papiamento = Mi ta stimabo
+Persa = Doo-set daaram
+Pig latin = Iay ovlay ouyay
+Polones = Kocham Ciebie
+Portugues = Eu te amo
+Romeno = Te ubesk
+Russo = Ya tebya liubliu
+Servio = Volim te
+Setswana/Tswana = Ke a go rata
+Sindhi = Maa tokhe pyar kendo ahyan
+Sioux = Techihhila
+Sueco = Jag alskar dig
+Suico = Ich lieb Di
+Swahili = Ninapenda wewe
+Tagalog = Mahal kita
+Taiwanes = Wa ga ei li
+Taitiano = Ua Here Vau Ia Oe
+Tamil = Nan unnai kathalikaraen
+Telugo = Nenu ninnu premistunnanu
+Tailandes = Chan rak khun - Masc > Fem / Phom rak khun - Fem > Masc
+Tupi = Oroausu
+Turquia = Seni Seviyorum
+Ucraniano = Ya tebe kahayu
+Urdu = Mai aap say pyaar karta hoo
+Vietnamita = Anh yeu em - Masc > Fem / Em yeu anh - Fem > Masc
+Welsh = Rwy'n dy garu
+Yiddish = Ikh hob dikh
+Yoruba = Mo ni fe`;
+
+    content.innerHTML = `
+      <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 10 🌍</h2>
+      <p class="text-gray-700 mb-4">Eu te amo... em todas as línguas! 💘</p>
+    `;
+
+    const pre = document.createElement("pre");
+    pre.className = "text-left text-sm text-gray-800 whitespace-pre-wrap overflow-y-auto max-h-[50vh] bg-gray-100 p-4 rounded-md shadow-inner";
+    pre.textContent = texto;
+
+    content.appendChild(pre);
+  } else {
+    alert("Resposta errada! 💔");
+  }
+}
+
+
+
+    function verificarSenhaDia11() {
+      const senha = document.getElementById("senha-dia11").value.trim().toLowerCase();
+      const content = document.getElementById("modal-content");
+      if (senha === "clara") {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 11</h2>
+          <p class="text-gray-700 mb-4">Quero meus agrados de volta 😤</p>
+          <p class="text-gray-700 mb-4">#ApoemaDesdeCriança</p>
+          <img src="imagens/apoema1.jpg" alt="agrado1" class="rounded-lg shadow-md w-full mb-4" />
+          <img src="imagens/apoema2.jpg" alt="agrado2" class="rounded-lg shadow-md w-full mb-4" />
+        `;
+      } else {
+        alert("Errou feio, errou rude!");
+      }
+    }
+
+
     function closeModal() {
       document.getElementById('modal').classList.add('hidden');
     }
@@ -298,7 +483,7 @@ function verificarSenhaDia8() {
     const dataInicial = new Date(2025, 6, 10);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
-    const totalDias = 10;
+    const totalDias = 11;
     const botoesContainer = document.getElementById("botoes-container");
 
     for (let i = 0; i < totalDias; i++) {
