@@ -142,6 +142,15 @@
         `;
       }
 
+      if (day === 12) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 12 🔒</h2>
+          <p class="text-gray-700 mb-4">Dica: Qual o amigo da direita?</p>
+          <input id="senha-dia12" type="text" placeholder="Digite a senha..." class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia12()" class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">Abrir presente</button>
+        `;
+      }
+
 
       modal.classList.remove('hidden');
     }
@@ -450,6 +459,23 @@ Yoruba = Mo ni fe`;
       }
     }
 
+    function verificarSenhaDia12() {
+      const senha = document.getElementById("senha-dia12").value.trim().toLowerCase();
+      const content = document.getElementById("modal-content");
+      if (senha === "goods") {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-4">Presente do Dia 12</h2>
+          <p class="text-gray-700 mb-4">Uma música desajeitada da madrugada para (tentar) te tranquilizar 💞</p>
+          <p class="text-gray-700 mb-4">Love me Tender - Elvis Presley</p>
+          <audio controls class="w-full rounded-lg shadow-md mb-4">
+            <source src="lovemetender.m4a" type="audio/mp4">
+            Seu navegador não suporta a reprodução de vídeo.
+          </audio>
+        `;
+      } else {
+        alert("Hmm... resposta errada!");
+      }
+    }
 
     function closeModal() {
       document.getElementById('modal').classList.add('hidden');
@@ -483,7 +509,7 @@ Yoruba = Mo ni fe`;
     const dataInicial = new Date(2025, 6, 10);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
-    const totalDias = 11;
+    const totalDias = 12;
     const botoesContainer = document.getElementById("botoes-container");
 
     for (let i = 0; i < totalDias; i++) {
