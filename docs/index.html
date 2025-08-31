@@ -151,6 +151,19 @@
         `;
       }
 
+      if (day === 13) {
+        content.innerHTML = `
+          <h2 class="text-2xl font-bold text-pink-600 mb-2">Presente do Dia 13 🔒</h2>
+          <p class="text-gray-700 mb-4">Dica: Palavras Cruzadas pág. 6</p>
+          <input id="senha-dia13" type="text" placeholder="Digite a senha..." 
+                class="border rounded-md px-4 py-2 w-full mb-4 text-center" />
+          <button onclick="verificarSenhaDia13()" 
+            class="bg-pink-400 text-white px-4 py-2 rounded-full hover:bg-pink-500 transition">
+            Abrir presente
+          </button>
+  `;
+}
+
 
       modal.classList.remove('hidden');
     }
@@ -477,6 +490,190 @@ Yoruba = Mo ni fe`;
       }
     }
 
+    
+function verificarSenhaDia13() {
+  const senha = document.getElementById("senha-dia13").value.trim().toLowerCase();
+  const content = document.getElementById("modal-content");
+
+  if (senha === "namorar") {
+    content.innerHTML = `
+      <h2 class="text-2xl font-bold text-pink-600 mb-4 text-center">Presente do Dia 13 💌</h2>
+      <p class="text-gray-700 mb-4 text-center">Um envelope do futuro chegou para você... abra com carinho 🥰</p>
+
+      <div class="envelope">
+    <div class="envelope-back"></div>
+
+    <div class="cartoes">
+        <img src="imagens/IDantonio.png" alt="Cartão 3" class="cartao">
+      <img src="imagens/ChaAurora2.png" alt="Cartão 2" class="cartao retrato">
+      <img src="imagens/cjwedding2.png" alt="Cartão 1" class="cartao retrato">
+      
+    </div>
+
+    <div class="envelope-front"></div>
+  </div>
+  <div class="area-cartoes-retirados" id="area-cartoes-retirados"></div>
+  <div class="controls">
+    <button id="pegar">📤 Pegar Cartão</button>
+    <button id="guardar">📥 Guardar Cartão</button>
+    </div>
+    `;
+
+    const style = document.createElement("style");
+    style.innerHTML = `
+      body {
+    font-family: Arial, sans-serif;
+    background: #fff0f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 40px;
+  }
+
+  #modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .envelope {
+    position: relative;
+    width: 360px;
+    height: 240px;
+    margin-bottom: 60px;
+  }
+
+  .envelope-back,
+  .envelope-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .envelope-back {
+    background-image: url('imagens/EnvelopeTras.png');
+    z-index: 0;
+  }
+
+  .envelope-front {
+    background-image: url('imagens/EnvelopeFrente.png');
+    z-index: 2;
+  }
+
+  .cartoes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .cartao {
+    max-width: auto;
+    max-height: 85%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+    position: absolute;
+    transition: transform 0.6s ease;
+
+    /* Mantém a qualidade da rotação */
+    image-rendering: auto;           /* ou "high-quality" se suportado */
+    transform-origin: center center;  /* gira em torno do centro */
+    backface-visibility: hidden;     /* evita borrões durante a animação */
+    will-change: transform;          /* otimiza GPU para transformações */
+  }
+
+  .area-cartoes-retirados {
+    width: 100%;
+    height: 350px; /* espaço reservado apenas para cartões */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 20px; /* espaço antes dos botões */
+  }
+
+  .cartao.baixo {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  .controls {
+    display: flex;
+    gap: 10px;
+  }
+
+  .controls button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #e91e63;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.25);
+  }
+
+  .controls button:hover {
+    background: #c2185b;
+  }
+    `;
+    document.head.appendChild(style);
+
+    const cartoes = Array.from(document.querySelectorAll(".cartao"));
+    let stack = [...cartoes]
+    let pilhaBaixo = [];
+    const areaBaixo = document.getElementById("area-cartoes-retirados");
+
+    document.getElementById("pegar").addEventListener("click", () => {
+  if (stack.length > 0) {
+    const cartao = stack.pop();
+    areaBaixo.appendChild(cartao);
+    cartao.classList.add("baixo");
+
+    if (cartao.classList.contains("retrato")) {
+      cartao.style.transform = "translateX(-50%) rotate(90deg)";
+    } else {
+      cartao.style.transform = "translateX(-50%)";
+    }
+    pilhaBaixo.push(cartao);
+  }
+});
+
+document.getElementById("guardar").addEventListener("click", () => {
+  if (pilhaBaixo.length > 0) {
+    const cartao = pilhaBaixo.pop();
+    cartao.classList.remove("baixo");
+    document.querySelector(".cartoes").appendChild(cartao);
+
+    if (cartao.classList.contains("retrato")) {
+      cartao.style.transform = "rotate(0deg)";
+    } else {
+      cartao.style.transform = "";
+    }
+    stack.push(cartao);
+  }
+});
+  } else {
+    alert("Hmm... não é essa a palavra 😏");
+  }
+}
+
     function closeModal() {
       document.getElementById('modal').classList.add('hidden');
     }
@@ -509,7 +706,7 @@ Yoruba = Mo ni fe`;
     const dataInicial = new Date(2025, 6, 10);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
-    const totalDias = 12;
+    const totalDias = 13;
     const botoesContainer = document.getElementById("botoes-container");
 
     for (let i = 0; i < totalDias; i++) {
@@ -526,6 +723,7 @@ Yoruba = Mo ni fe`;
         botoesContainer.appendChild(botao);
       }
     }
+    
   </script>
 </body>
 </html>
